@@ -1,6 +1,5 @@
 package pl.piotrjaniszewski.crudrest.services;
 
-import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Service;
 import pl.piotrjaniszewski.crudrest.domain.User;
 
