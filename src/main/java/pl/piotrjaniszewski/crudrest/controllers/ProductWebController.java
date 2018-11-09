@@ -9,7 +9,7 @@ import pl.piotrjaniszewski.crudrest.services.ApiService;
 @Controller
 public class ProductWebController {
 
-    ApiService apiService;
+    private ApiService apiService;
 
     public ProductWebController(ApiService apiService) {
         this.apiService = apiService;

@@ -6,11 +6,11 @@ import pl.piotrjaniszewski.crudrest.domain.Product;
 import pl.piotrjaniszewski.crudrest.domain.ProductList;
 import pl.piotrjaniszewski.crudrest.services.ProductService;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/product/")
+@RequestMapping(ProductController.BASE_URL)
 public class ProductController {
+
+    public static final String BASE_URL ="/api/product/";
 
     private final ProductService productService;
 
@@ -39,18 +39,18 @@ public class ProductController {
     @PatchMapping("{id}/patch")
     public Product patchProduct(@PathVariable Long id,@RequestBody Product product){
         product.setId(id);
-        return productService.saveRecipe(product);
+        return productService.saveProduct(product);
     }
 
     @PutMapping("{id}/put")
     public Product putProduct(@PathVariable Long id,@RequestBody Product product){
         product.setId(id);
-        return productService.saveRecipe(product);
+        return productService.saveProduct(product);
     }
 
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@RequestBody Product product){
-        return productService.saveRecipe(product);
+        return productService.saveProduct(product);
     }
 }

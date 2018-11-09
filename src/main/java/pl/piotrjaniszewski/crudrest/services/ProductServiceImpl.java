@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product saveRecipe(Product product) {
+    public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
 
