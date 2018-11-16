@@ -2,7 +2,10 @@ package pl.piotrjaniszewski.crudrest.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.piotrjaniszewski.crudrest.domain.Product;
 import pl.piotrjaniszewski.crudrest.services.ApiService;
 
@@ -18,6 +21,7 @@ public class ProductWebController {
     @GetMapping({"", "/", "/index"})
     public String index(Model model) {
         model.addAttribute("products", apiService.getAllProducts());
+//        TODO
         return "index";
     }
 

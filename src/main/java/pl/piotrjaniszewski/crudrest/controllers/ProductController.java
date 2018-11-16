@@ -1,9 +1,11 @@
 package pl.piotrjaniszewski.crudrest.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 import pl.piotrjaniszewski.crudrest.domain.Product;
 import pl.piotrjaniszewski.crudrest.domain.ProductList;
+import pl.piotrjaniszewski.crudrest.exceptionHandlers.BasicErrorMsg;
 import pl.piotrjaniszewski.crudrest.services.ProductService;
 
 @RestController
@@ -28,6 +30,11 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     public ProductList findAllProducts(){
         return new ProductList( productService.findAllProducts() );
+    }
+
+    @GetMapping("loginfailed")
+    public BasicErrorMsg loginFail(){
+        throw new BadCredentialsException("");
     }
 
     @DeleteMapping("{id}/delete")

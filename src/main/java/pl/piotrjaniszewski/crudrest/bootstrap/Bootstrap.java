@@ -3,15 +3,23 @@ package pl.piotrjaniszewski.crudrest.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.piotrjaniszewski.crudrest.domain.Product;
+import pl.piotrjaniszewski.crudrest.domain.Role;
+import pl.piotrjaniszewski.crudrest.domain.User;
 import pl.piotrjaniszewski.crudrest.repositories.ProductRepository;
+import pl.piotrjaniszewski.crudrest.repositories.UserRepository;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Component
 public class Bootstrap implements CommandLineRunner {
 
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
-    public Bootstrap(ProductRepository productRepository) {
+    public Bootstrap(ProductRepository productRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -61,6 +69,19 @@ public class Bootstrap implements CommandLineRunner {
         productRepository.save(p4);
         productRepository.save(p5);
 
+        User user = new User();
+        user.setUsername("user1");
+        user.setPassword("p1");
+        Role role = new Role();
+        role.setName("USER");
+        List<Role> roles = new LinkedList<>();
+        roles.add(role);
+        user.setRoles(roles);
+        userRepository.save(user);
+
         System.out.println("Products loaded: "+productRepository.findAll().size());
+        System.out.println("Users loaded:    "+userRepository.findAll().size());
+        User u1 = userRepository.findByUsername("user1").get();
+        System.out.println(u1.getUsername()+" "+u1.getPassword());
     }
 }
